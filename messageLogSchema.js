@@ -8,6 +8,10 @@ const schema = new mongoose.Schema({
     primedUser: {
         type: String,
         required: true
+    },
+    time: {
+        type: Number,
+        required: true
     }
 })
 
