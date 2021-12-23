@@ -37,7 +37,9 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.on('messageCreate', message => {
-    message.reply('hey')
+    new testSchema({
+        snipedMessage: message.content,
+    }).save()
 });
 
 client.login(token);
