@@ -1,11 +1,11 @@
 // Requirements + Requirements from config.json
 const { Client, Intents, Collection } = require('discord.js');
-const token = require('./config.json');
+const { token } = require('./config.json');
 const mongoose = require('mongoose');
 const { connectionString } = require('./config.json');
 const logSchema = require('./messageLogSchema');
 const delSchema = require('./deleteLogSchema');
-const deleteLogs = require('./deleteLogSchema');
+
 
 // Client Creation
 const client = new Client({
@@ -16,7 +16,7 @@ const client = new Client({
 
 client.commands = new Collection();
 
-client.once('ready', client => {
+client.once('ready', async client => {
     console.log('Ready!');
     mongoose.connect(connectionString, {
         keepAlive: true,
@@ -65,9 +65,12 @@ client.on('interactionCreate', async interaction => {
 
     if (commandName === 'ping') {
         await interaction.reply('Pong');
-    } else if (commandName === 'check') {
-        const sortLogs = deleteLogs.sort(time)
-        interaction.reply(messageLog);
+    } else if (commandName === 'snipe') {
+        const results = await delSchema.find({})
+            .sort({
+                time: -1
+            })
+        console.log('RESULTS', results)
     }
 });
 
