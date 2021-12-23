@@ -67,21 +67,23 @@ client.on('interactionCreate', async interaction => {
         await interaction.reply('Pong');
     } else if (commandName === 'snipe') {
         // Retrieve Function [Sort]
-        const results = await delSchema.find({
-            delId: ' '
-        })
+        const results = await delSchema.find({})
             .sort({
                 time: -1
             })
             .limit(1)
-        console.log(results)
+        console.log(results[0].delId)
+        await interaction.reply(results[0].delId)
         // Delete Function [Data Management]
         const deleteOneLog = await delSchema.deleteOne({}).sort({
             time: 1
-        })
-            .limit(1)
-        console.log(deleteOneLog)
-        interaction.reply(`The message you have sniped is ${delId}`)
+        }).limit(1)
+
+        // Bot Reply
+
+        if (results === 0) {
+            interaction.reply('Theres nothing tos snipe');
+        }
     }
 });
 
