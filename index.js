@@ -29,12 +29,12 @@ client.once('ready', client => {
     })
 });
 
-client.on('messageCreate', message => {
-    new logSchema({
-        primedMessage: message.content,
-        primedUser: message.author.username,
-    }).save()
-});
+ //   client.on('messageCreate', message => {
+//        new logSchema({
+ //           primedMessage: message.content,
+ //           primedUser: message.author.username,
+ //       }).save()
+  //  });
 
 client.on('messageDelete', message => {
     if (message.partial) {
@@ -50,6 +50,9 @@ client.on('messageDelete', message => {
 
     } else {
         console.log(message.content);
+            new delSchema({
+                delId: message.content,
+            }).save()
     }
 });
 
