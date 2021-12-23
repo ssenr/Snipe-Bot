@@ -1,17 +1,22 @@
 // Requirements + Requirements from config.json
-const fs = require('fs');
-const { Client, Intents, Collection, Message} = require('discord.js');
+const { Client, Intents, Collection } = require('discord.js');
 const { token } = require('./config.json');
 const mongoose = require('mongoose');
 const { connectionString } = require('./config.json');
-const testSchema = require('./test-schema');
+const logSchema = require('./messageLogSchema');
+const delSchema = require('./deleteLogSchema');
 
 // Client Creation
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+    partials: ['MESSAGE', 'CHANNEL', 'REACTION']
+
+});
+
 
 client.commands = new Collection();
 
-client.once('ready', ready => {
+client.once('ready', client => {
     console.log('Ready!');
     mongoose.connect(connectionString, {
         keepAlive: true,
@@ -24,6 +29,29 @@ client.once('ready', ready => {
     })
 });
 
+client.on('messageCreate', message => {
+    new logSchema({
+        primedMessage: message.content,
+        primedUser: message.author.username,
+    }).save()
+});
+
+client.on('messageDelete', message => {
+    if (message.partial) {
+        message.fetch()
+            .then(fullMessage => {
+                new delSchema({
+                    delId: fullMessage.content,
+                }).save()
+            })
+            .catch(error => {
+                console.log('Something went wrong when fetching the message:', error);
+            });
+
+    } else {
+        console.log(message.content);
+    }
+});
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
@@ -36,10 +64,6 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
-client.on('messageCreate', message => {
-    new testSchema({
-        snipedMessage: message.content,
-    }).save()
-});
+
 
 client.login(token);

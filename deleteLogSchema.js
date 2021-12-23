@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-    snipedMessage: {
+    delId: {
         type: String,
         required: true
     }
 })
 
-module.exports = mongoose.model('testing', schema);
+module.exports = mongoose.model('deleteLog', schema);
