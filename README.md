@@ -5,11 +5,11 @@ A simple bot to snipe deleted messages
 To catch people lacking in discord
 
 ## Features
-Retrieve up to 5 deleted messages
+Retrieve's a recently deleted message
 
 ## Dependencies
-Discord.js
-Mongoose
+-Discord.js
+-Mongoose
 
 
 ## TO DO
@@ -18,12 +18,14 @@ Mongoose
 - [x] Connected MongoDB
 - [x] Used events to write to MongoDB Database
 - [x] Seperated Complete Log and Deleted Messages Log
-- [ ] Read database queries
-- [ ] Sort (Aggregate) database queries based on unqiue value [time]
-- [ ] Return database query with limit
+- [x] Read database queries
+- [x] Sort (Aggregate) database queries based on unqiue value [time]
+- [x] Return database query with limit
 
 ### Unneccessary TO-DO's (Not inherently essential to code functionality)
 - [ ] Optimize code with event and command handling
 - [ ] Beautify Code
 - [ ] Host it!
+- [ ] Handle multiple snipes (given num)
+- [ ] Revamp with updated model
 
