@@ -11,6 +11,8 @@ Retrieve's a recently deleted message
 -Discord.js
 -Mongoose
 
+## Code Explanation
+https://docs.google.com/document/d/1i5gMkZXHbUhkEc2OmUa38NbIFNFD0Xo-2eRV4x8AGD4/edit?usp=sharing
 
 ## TO DO
 - [x] Get bot online
