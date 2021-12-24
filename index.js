@@ -15,7 +15,7 @@ const client = new Client({
 
 client.commands = new Collection();
 
-client.once('ready', async client => {
+client.once('ready', async () => {
     console.log('Ready!');
     mongoose.connect(connectionString, {
         keepAlive: true,
@@ -66,25 +66,26 @@ client.on('interactionCreate', async interaction => {
     if (commandName === 'ping') {
         await interaction.reply('Pong');
     } else if (commandName === 'snipe') {
+
         // Retrieve Function [Sort]
-        const results = await delSchema.find({})
-            .sort({
-                time: -1
-            })
-            .limit(1)
-        console.log(results[0].delId)
-        await interaction.reply(results[0].delId)
-        // Delete Function [Data Management]
-        const deleteOneLog = await delSchema.deleteOne({}).sort({
-            time: 1
-        }).limit(1)
+        const results = delSchema.find({}).sort({time: -1}).limit(1)
 
-        // Bot Reply
-
-        if (results === 0) {
-            interaction.reply('Theres nothing tos snipe');
+        let snipedMessage;
+        switch(snipedMessage) {
+            case typeof results.delId:
+                snipedMessage = results[0].delId;
+                break;
+            case typeof results.delId === 'undefined':
+                snipedMessage = "There is nothing to snipe";
         }
+
+        await interaction.reply(snipedMessage);
+        // Delete Function [Data Management]
+        await delSchema.deleteOne({}).sort({time: 1}).limit(1)
     }
+
+
+
 });
 
 client.login(token);
