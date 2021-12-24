@@ -73,7 +73,7 @@ client.on('interactionCreate', async interaction => {
         if (typeof results[0] !== 'undefined') {
             interaction.reply(results[0].delId)
         } else {
-            interaction.reply("There is nothing to snipe!")
+            interaction.reply("There is nothing to snipe")
         }
         // Delete Function [Data Management]
         await delSchema.deleteOne({}).sort({time: 1}).limit(1)
