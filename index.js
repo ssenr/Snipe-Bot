@@ -83,4 +83,5 @@ client.on('interactionCreate', async interaction => {
 
 });
 
+// Sign in
 client.login(token);
