@@ -15,7 +15,7 @@ const client = new Client({
 
 client.commands = new Collection();
 
-client.once('ready', async () => {
+client.once('ready',  () => {
     console.log('Ready!');
     mongoose.connect(connectionString, {
         keepAlive: true,
@@ -73,13 +73,11 @@ client.on('interactionCreate', async interaction => {
         if (typeof results[0] !== 'undefined') {
             interaction.reply(results[0].delId)
         } else {
-            interaction.reply("There is nothing to snipe")
+            interaction.reply("There is nothing to snipe!")
         }
         // Delete Function [Data Management]
         await delSchema.deleteOne({}).sort({time: 1}).limit(1)
     }
-
-
 
 });
 
