@@ -68,18 +68,13 @@ client.on('interactionCreate', async interaction => {
     } else if (commandName === 'snipe') {
 
         // Retrieve Function [Sort]
-        const results = delSchema.find({}).sort({time: -1}).limit(1)
+        const results = await delSchema.find({}).sort({time: -1}).limit(1)
 
-        let snipedMessage;
-        switch(snipedMessage) {
-            case typeof results.delId:
-                snipedMessage = results[0].delId;
-                break;
-            case typeof results.delId === 'undefined':
-                snipedMessage = "There is nothing to snipe";
+        if (typeof results[0] !== 'undefined') {
+            interaction.reply(results[0].delId)
+        } else {
+            interaction.reply("There is nothing to snipe!")
         }
-
-        await interaction.reply(snipedMessage);
         // Delete Function [Data Management]
         await delSchema.deleteOne({}).sort({time: 1}).limit(1)
     }
