@@ -1,4 +1,5 @@
 // Requirements + Requirements from config.json
+const fs = require('fs');
 const { Client, Intents, Collection } = require('discord.js');
 const { token } = require('./config.json');
 const mongoose = require('mongoose');
@@ -12,8 +13,14 @@ const client = new Client({
     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
 
-
 client.commands = new Collection();
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+
+    client.commands.set(command.data.name, command);
+}
 
 client.once('ready',  () => {
     console.log('Ready!');
@@ -61,25 +68,22 @@ client.on('messageDelete', message => {
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
-    const { commandName } = interaction;
-
-    if (commandName === 'ping') {
-        await interaction.reply('Pong');
-    } else if (commandName === 'snipe') {
-
-        // Retrieve Function [Sort]
-        const results = await delSchema.find({}).sort({time: -1}).limit(1)
-
-        if (typeof results[0] !== 'undefined') {
-            interaction.reply(results[0].delId)
-        } else {
-            interaction.reply("There is nothing to snipe!")
-        }
+    const command = client.commands.get(interaction.commandName);
+    if (!command) return;
+    try {
+        await command.execute(interaction);
+    } catch (error) {
+        console.error(error);
+        await interaction.reply({content: 'There was an error while executing this command!', ephemeral: true});
+    }
         // Delete Function [Data Management]
         await delSchema.deleteOne({}).sort({time: 1}).limit(1)
-    }
 
 });
+
+
+
+
 
 // Sign in
 client.login(token);
