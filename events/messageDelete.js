@@ -13,6 +13,12 @@ module.exports = {
                 .catch(error => {
                     console.log('Something went wrong when fetching the message:', error);
                 });
+        } else {
+            console.log(message.content);
+                new delSchema({
+                    delId: message.content,
+                    time: Date.now()
+                }).save()
         }
     }
 }

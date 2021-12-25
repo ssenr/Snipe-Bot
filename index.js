@@ -2,9 +2,6 @@
 const fs = require('fs');
 const { Client, Intents, Collection } = require('discord.js');
 const { token } = require('./config.json');
-const mongoose = require('mongoose');
-const { connectionString } = require('./config.json');
-const logSchema = require('./schema/messageLogSchema');
 const delSchema = require('./schema/deleteLogSchema');
 
 // Client Creation
@@ -35,28 +32,6 @@ for (const file of eventFiles) {
         client.on(event.name, (...args) => event.execute(...args));
     }
 }
-
-client.on('messageDelete', message => {
-    if (message.partial) {
-        message.fetch()
-            .then(fullMessage => {
-                new delSchema({
-                    delId: fullMessage.content,
-                    time: Date.now()
-                }).save()
-            })
-            .catch(error => {
-                console.log('Something went wrong when fetching the message:', error);
-            });
-
-    } else {
-        console.log(message.content);
-            new delSchema({
-                delId: message.content,
-                time: Date.now()
-            }).save()
-    }
-});
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;

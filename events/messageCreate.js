@@ -8,5 +8,10 @@ module.exports = {
             primedUser: message.author.username,
             time: Date.now()
         }).save();
+        try {
+           await logSchema.deleteOne({}).sort({time: 1}).limit(1);
+        } catch(error5) {
+            console.log(error5);
+        }
     }
 }
