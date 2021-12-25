@@ -32,15 +32,6 @@ for (const file of eventFiles) {
     }
 }
 
-client.on('messageCreate', async message => {
-    new logSchema({
-        primedMessage: message.content,
-        primedUser: message.author.username,
-        time: Date.now()
-      }).save()
-    await logSchema.deleteOne({}).sort({time: 1}).limit(1)
- });
-
 client.on('messageDelete', message => {
     if (message.partial) {
         message.fetch()
