@@ -5,7 +5,7 @@ const { token } = require('./config.json');
 const mongoose = require('mongoose');
 const { connectionString } = require('./config.json');
 const logSchema = require('./schema/messageLogSchema');
-const delSchema = require('C:\\Users\\champ\\WebstormProjects\\snipebot\\schema\\deleteLogSchema.js');
+const delSchema = require('./schema/deleteLogSchema');
 
 // Client Creation
 const client = new Client({
@@ -15,6 +15,7 @@ const client = new Client({
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
@@ -22,18 +23,14 @@ for (const file of commandFiles) {
     client.commands.set(command.data.name, command);
 }
 
-client.once('ready',  () => {
-    console.log('Ready!');
-    mongoose.connect(connectionString, {
-        keepAlive: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    }).then(()=>{
-        console.log('Connected to the database');
-    }).catch((err) => {
-        console.log(err);
-    })
-});
+for (const file of eventFiles) {
+    const event = require(`./events/${file}`);
+    if (event.once) {
+        client.once(event.name, (...args) => event.execute(...args));
+    } else {
+        client.on(event.name, (...args) => event.execute(...args));
+    }
+}
 
 client.on('messageCreate', async message => {
     new logSchema({
