@@ -14,9 +14,13 @@ const client = new Client({
 });
 
 client.commands = new Collection();
+
+// Command + Event Handling [Reading]
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
+
+// Command + Event Handling Execution
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
 
@@ -68,10 +72,6 @@ client.on('interactionCreate', async interaction => {
         await delSchema.deleteOne({}).sort({time: 1}).limit(1)
 
 });
-
-
-
-
 
 // Sign in
 client.login(token);
