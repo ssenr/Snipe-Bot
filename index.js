@@ -4,8 +4,8 @@ const { Client, Intents, Collection } = require('discord.js');
 const { token } = require('./config.json');
 const mongoose = require('mongoose');
 const { connectionString } = require('./config.json');
-const logSchema = require('./messageLogSchema');
-const delSchema = require('./deleteLogSchema');
+const logSchema = require('./schema/messageLogSchema');
+const delSchema = require('C:\\Users\\champ\\WebstormProjects\\snipebot\\schema\\deleteLogSchema.js');
 
 // Client Creation
 const client = new Client({
