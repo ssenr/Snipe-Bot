@@ -12,7 +12,8 @@ const schema = new mongoose.Schema({
     time: {
         type: Number,
         required: true
-    }
+    },
+    date: { type: Date, default: Date.now }
 })
 
 module.exports = mongoose.model('testing', schema);
