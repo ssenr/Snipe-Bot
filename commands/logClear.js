@@ -21,8 +21,5 @@ module.exports = {
         } else if (finalCounter > 0) {
             interaction.reply(`You have successfully deleted ${finalCounter} logs.`)
         }
-
-
         }
-
-    }
+}
