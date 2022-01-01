@@ -29,5 +29,4 @@ https://docs.google.com/document/d/1i5gMkZXHbUhkEc2OmUa38NbIFNFD0Xo-2eRV4x8AGD4/
 - [ ] Beautify Code
 - [ ] Host it!
 - [ ] Handle multiple snipes (given num)
-- [ ] Revamp with updated model
-
+- [ ] Mute and ban
