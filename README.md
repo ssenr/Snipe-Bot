@@ -30,3 +30,5 @@ https://docs.google.com/document/d/1i5gMkZXHbUhkEc2OmUa38NbIFNFD0Xo-2eRV4x8AGD4/
 - [ ] Host it!
 - [ ] Handle multiple snipes (given num)
 - [ ] Mute and ban
+- [ ] Show person who sent message
+- [ ] Edit Snipe
