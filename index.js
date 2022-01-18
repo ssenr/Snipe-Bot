@@ -2,12 +2,22 @@
 const fs = require('fs');
 const { Client, Intents, Collection } = require('discord.js');
 const { token } = require('./config.json');
+const logs = require('discord-logs');
 const delSchema = require('./schema/deleteLogSchema');
 
 // Client Creation
 const client = new Client({
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_VOICE_STATES,
+        Intents.FLAGS.GUILD_PRESENCES,
+        Intents.FLAGS.GUILD_MEMBERS],
     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
+});
+
+logs(client, {
+    debug: false
 });
 
 client.commands = new Collection();
@@ -44,9 +54,32 @@ client.on('interactionCreate', async interaction => {
         console.error(error);
         await interaction.reply({content: 'There was an error while executing this command!', ephemeral: true});
     }
-        // Delete Function [Data Management]
-        await delSchema.deleteOne({}).sort({time: 1}).limit(1)
+});
 
+client.on("voiceChannelJoin", (member, channel) => {
+    console.log(member+' has joined a channel' + channel);
+    if (channel == 735253174423781457) {
+        if (member.roles.cache.some(role => role.name === 'vc chat')) {
+            console.log("User already has role");
+        } else {
+            member.roles.add('933129860371611679');
+        }
+    } else if (channel !== '735253174423781457') {
+        console.log('User did not join'+ channel)
+    }
+
+});
+
+client.on("voiceChannelLeave", (member, channel) => {
+   member.roles.remove('933129860371611679');
+});
+
+client.on("voiceChannelSwitch", (member, oldChannel, newChannel) => {
+    if (newChannel == 735253174423781457) {
+        member.roles.add('933129860371611679')
+    } else if (newChannel != 735253174423781457) {
+        member.roles.remove('933129860371611679')
+    }
 });
 
 // Sign in

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
     primedMessage: {
         type: String,
-        required: true
+        required: false
     },
     primedUser: {
         type: String,

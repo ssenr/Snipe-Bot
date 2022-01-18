@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const delSchema = require('C:\\Users\\champ\\WebstormProjects\\snipebot\\schema\\deleteLogSchema.js');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -11,12 +12,7 @@ module.exports = {
         if (typeof results[0] !== 'undefined') {
             interaction.reply(results[0].delId)
         } else {
-            interaction.reply("There is nothing to snipe!")
-            try {
-                await delSchema.delteOne({}).sort({time: 1}).limit(1)
-            } catch(error1) {
-                console.log(error1)
-            }
+            interaction.reply("There is nothing to snipe")
         }
     }
 }
