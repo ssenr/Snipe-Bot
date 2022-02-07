@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const logSchema = require('C:\\Users\\champ\\WebstormProjects\\snipebot\\schema\\messageLogSchema.js');
+const logSchema = require('../schema/messageLogSchema');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -7,6 +7,7 @@ module.exports = {
         .setDescription('Clears amount of logs based on input')
         .addIntegerOption(option => option.setName('amount').setDescription('Number of logs to clear').setRequired(true)),
     async execute(interaction) {
+        console.log(interaction.commandId);
         const amount = await logSchema.find({}).sort({time: 1});
         const input = interaction.options.getInteger('amount');
         const counter = amount.length;

@@ -1,19 +1,30 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-    primedMessage: {
+    author: {
         type: String,
-        required: false
+        required: true,
     },
-    primedUser: {
+    authorId: {
+        type: String,
+        required: true,
+    },
+    pfpUrl: {
+        type: String,
+        required: true,
+    },
+    content: {
+        type: String,
+        required: true,
+    },
+    createdAt: {
         type: String,
         required: true
     },
-    time: {
+    createdTimestamp: {
         type: Number,
         required: true
-    },
-    date: { type: Date, default: Date.now }
+    }
 })
 
-module.exports = mongoose.model('testing', schema);
+module.exports = mongoose.model('messageLog', schema);

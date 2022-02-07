@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
     delId: {
         type: String,
-        required: true
+        required: false
     },
     time: {
         type: Number,

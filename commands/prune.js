@@ -5,6 +5,7 @@ module.exports = {
         .setName('prune')
         .setDescription('Prune up to 99 messages.')
         .addIntegerOption(option => option.setName('amount').setDescription('Number of messages to prune')),
+    defaultPermission: false,
     async execute(interaction) {
         const amount = interaction.options.getInteger('amount');
 
@@ -17,5 +18,6 @@ module.exports = {
         });
 
         return interaction.reply({ content: `Successfully pruned \`${amount}\` messages.`, ephemeral: true });
+
     },
 };
