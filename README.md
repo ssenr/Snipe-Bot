@@ -23,9 +23,9 @@ Retrieve's a recently deleted message
 - [x] Return database query with limit
 
 ### Unneccessary TO-DO's (Not inherently essential to code functionality)
-- [ ] Optimize code with event and command handling
-- [ ] Beautify Code
-- [ ] Host it!
+- [x] Optimize code with event and command handling
+- [x] Beautify Code
+- [x] Host it!
 - [ ] Handle multiple snipes (given num)
 - [ ] Revamp with updated model
 
