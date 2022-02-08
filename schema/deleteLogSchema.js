@@ -1,13 +1,9 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-    primedMessage: {
+    delId: {
         type: String,
-        required: true
-    },
-    primedUser: {
-        type: String,
-        required: true
+        required: false
     },
     time: {
         type: Number,
@@ -15,4 +11,4 @@ const schema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('testing', schema);
+module.exports = mongoose.model('deleteLog', schema);

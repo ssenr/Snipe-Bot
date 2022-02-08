@@ -1,0 +1,44 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const logSchema = require('../schema/messageLogSchema');
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('clearlog')
+        .setDescription('Clears amount of logs based on input')
+        .addIntegerOption(option => option.setName('amount').setDescription('Number of logs to clear').setRequired(true)),
+    async execute(interaction) {
+        // Store input in "amount" constant
+        const amount = interaction.options.getInteger('amount');
+
+        if (amount <= 1 || amount > 10) {
+            return interaction.reply({content: 'You need to input a number between 1 and 10.', ephemeral: true});
+        } else {
+            // Define logs in array, and Count array
+            const logs = await logSchema.find({});
+            const logNum = logs.length;
+
+            // Display number of logs [Test]
+            console.log(logNum);
+
+            // For Loop that deletes based on input
+            if (logNum < 15) {
+
+            }
+            else if (logNum >= 15 ) {
+                for (let i = 0; i < amount; i++) {
+                    const logsToDelete = await logSchema.find({}).sort({createdTimestamp: 1});
+                    const oneLog = logsToDelete[0].createdTimestamp;
+                    const query = { createdTimestamp: `${oneLog}` };
+                    const deleteLog = await logSchema.deleteOne({query});
+
+                    if (deleteLog.deletedCount === 1) {
+                        console.log("Successfully deleted 1");
+                    } else {
+                        console.log("Shi, probably failed lmfao");
+                    }
+                    // console.log("hello");
+                }
+            }
+        }
+    }
+}
