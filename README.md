@@ -32,3 +32,4 @@ https://docs.google.com/document/d/1i5gMkZXHbUhkEc2OmUa38NbIFNFD0Xo-2eRV4x8AGD4/
 - [ ] Mute and ban
 - [ ] Show person who sent message
 - [ ] Edit Snipe
+- [ ] bot pins! Bot can pin an infinite amount of attachments and/or messages
