@@ -7,20 +7,38 @@ module.exports = {
         .setDescription('Clears amount of logs based on input')
         .addIntegerOption(option => option.setName('amount').setDescription('Number of logs to clear').setRequired(true)),
     async execute(interaction) {
-        console.log(interaction.commandId);
-        const amount = await logSchema.find({}).sort({time: 1});
-        const input = interaction.options.getInteger('amount');
-        const counter = amount.length;
-        const timeToDelete = Date.now() - (input * 3600000);
+        // Store input in "amount" constant
+        const amount = interaction.options.getInteger('amount');
 
-        await logSchema.deleteMany({time: {$lt: timeToDelete}});
+        if (amount <= 1 || amount > 10) {
+            return interaction.reply({content: 'You need to input a number between 1 and 10.', ephemeral: true});
+        } else {
+            // Define logs in array, and Count array
+            const logs = await logSchema.find({});
+            const logNum = logs.length;
 
-        const counterAfterDelete = amount.length;
-        const finalCounter = counter - counterAfterDelete;
-        if (finalCounter === 0) {
-            interaction.reply(`There are no logs older than ${input} hours.`)
-        } else if (finalCounter > 0) {
-            interaction.reply(`You have successfully deleted ${finalCounter} logs.`)
+            // Display number of logs [Test]
+            console.log(logNum);
+
+            // For Loop that deletes based on input
+            if (logNum < 15) {
+
+            }
+            else if (logNum >= 15 ) {
+                for (let i = 0; i < amount; i++) {
+                    const logsToDelete = await logSchema.find({}).sort({createdTimestamp: 1});
+                    const oneLog = logsToDelete[0].createdTimestamp;
+                    const query = { createdTimestamp: `${oneLog}` };
+                    const deleteLog = await logSchema.deleteOne({query});
+
+                    if (deleteLog.deletedCount === 1) {
+                        console.log("Successfully deleted 1");
+                    } else {
+                        console.log("Shi, probably failed lmfao");
+                    }
+                    // console.log("hello");
+                }
+            }
         }
-        }
+    }
 }

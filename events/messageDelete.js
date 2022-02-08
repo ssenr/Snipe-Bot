@@ -1,5 +1,6 @@
+// Declare Schema
 const messageLogSchema = require('../schema/messageLogSchema')
-const delSchema = require("../schema/messageLogSchema");
+const logSchema = require("../schema/messageLogSchema");
 
 module.exports = {
     name: 'messageDelete',
@@ -32,14 +33,26 @@ module.exports = {
                     createdTimestamp: message.createdTimestamp
                 }).save()
             }
-        }
+            const logs = await messageLogSchema.find({});
+            const numLogs = logs.length;
 
-        // Deprecated Code, doesn't function as intended
-        const delete1 = await delSchema.find({}).sort({createdTimestamp: 1}).limit(1)
-        if (delete1[0]) {
-            messageLogSchema.deleteOne(delete1)
-        } else {
+            if (numLogs < 10) {
 
+            } else if (numLogs >= 20) {
+                for (let d = 0; d < 5; d++) {
+                    const logsToDelete = await messageLogSchema.find({}).sort({createdTimestamp: 1});
+                    const oneLog = logsToDelete[0].createdTimestamp;
+                    const query = { createdTimestamp: `${oneLog}` };
+                    const deleteLog = await logSchema.deleteOne({query});
+                    let deleted;
+
+                    if (deleteLog.deletedCount === 1) {
+                        deleted++;
+                    } else {
+                        console.log("Not deleted")
+                    }
+                }
+            }
         }
     }
 }
