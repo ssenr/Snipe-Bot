@@ -1,7 +1,12 @@
+//Requirements
+const { ltVC, vcChatRole } = require("../config.json");
+
 // Code
 module.exports = {
     name: 'voiceChannelLeave',
     execute(member, channel) {
-        member.roles.remove('933129860371611679')
+        if (channel == ltVC) {
+            member.roles.remove(vcChatRole);
+        }
     }
 }

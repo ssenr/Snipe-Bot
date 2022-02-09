@@ -8,7 +8,7 @@ module.exports = {
         .setName('snipe')
         .setDescription('Snipes a recently deleted message!'),
     async execute(interaction) {
-
+        // console.log(interaction.commandId) // [Interaction commandId]
         const results = await delSchema.find({}).sort({createdTimestamp: -1}).limit(1)
 
         if (typeof results[0] !== 'undefined') {
@@ -26,7 +26,7 @@ module.exports = {
             let avatarUrl;
             async function avatarUrlFind () {
                 const guildMember = await guild.members.fetch(memberId);
-                console.log("done!");
+                // console.log("done!"); [Test, Deprecated]
                 avatarUrl = guildMember.displayAvatarURL({dynamic: true});
             }
             await avatarUrlFind();
