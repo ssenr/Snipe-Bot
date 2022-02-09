@@ -2,6 +2,17 @@ const mongoose = require('mongoose');
 const { connectionString } = require('../config.json');
 const { Client, Collection, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES,] });
+const {
+    logClearID,
+    numOfLogsID,
+    pruneID,
+    snipeID,
+    publicRole,
+    debugNotAllowedRole,
+    debugAllowedRole,
+    guildId,
+    debugGuildId
+} = require('../config.json')
 
 module.exports = {
     name: 'ready',
@@ -19,46 +30,54 @@ module.exports = {
         })
         const fullPermissions = [
             {
-                id: '926679601164476479',
+                id: logClearID,
                 permissions: [{
-                    id: '621287295865061376',
+                    id: publicRole,
                     type: 'ROLE',
                     permission: false,
                 }],
             },
             {
-                id: '926679601164476481',
+                id: numOfLogsID,
                 permissions: [{
-                    id: '621287295865061376',
+                    id: publicRole,
                     type: 'ROLE',
                     permission: false,
-                }]
+                }],
             },
             {
-                id: '933160264969355347',
+                id: pruneID,
                 permissions: [{
-                    id: '621287295865061376',
+                    id: publicRole,
+                    type: 'ROLE',
+                    permission: false,
+                }],
+            },
+            {
+                id: snipeID,
+                permissions: [{
+                    id: publicRole,
+                    type: 'ROLE',
+                    permission: false,
+                }],
+            },
+            {
+                id: snipeID,
+                permissions: [{
+                    id: debugAllowedRole,
                     type: 'ROLE',
                     permission: true,
-                }]
+                }],
             },
             {
-                id: '926679601164476480',
+                id: snipeID,
                 permissions: [{
-                    id: '621287295865061376',
+                    id: debugNotAllowedRole,
                     type: 'ROLE',
                     permission: false,
-                }]
-            },
-            {
-                id: '926679601164476478',
-                permissions: [{
-                    id: '621287295865061376',
-                    type: 'ROLE',
-                    permission: false,
-                }]
+                }],
             }
         ];
-        await client.guilds.cache.get('621286885615992834')?.commands.permissions.set({ fullPermissions });
+        await client.guilds.cache.get(debugGuildId)?.commands.permissions.set({ fullPermissions });
     },
 };

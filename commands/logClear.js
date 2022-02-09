@@ -7,6 +7,7 @@ module.exports = {
         .setDescription('Clears amount of logs based on input')
         .addIntegerOption(option => option.setName('amount').setDescription('Number of logs to clear').setRequired(true)),
     async execute(interaction) {
+        console.log(interaction.commandId); // [Interaction commandID]
         // Store input in "amount" constant
         const amount = interaction.options.getInteger('amount');
 
@@ -17,12 +18,12 @@ module.exports = {
             const logs = await logSchema.find({});
             const logNum = logs.length;
 
-            // Display number of logs [Test]
-            console.log(logNum);
+            // Display number of logs [Test] [Deprecated]
+            // console.log(logNum);
 
             // For Loop that deletes based on input
             if (logNum < 15) {
-
+                interaction.reply(`There are currently ${logNum} logs in the database. Deleting more is ill-advised.`)
             }
             else if (logNum >= 15 ) {
                 for (let i = 0; i < amount; i++) {
@@ -31,13 +32,10 @@ module.exports = {
                     const query = { createdTimestamp: `${oneLog}` };
                     const deleteLog = await logSchema.deleteOne({query});
 
-                    if (deleteLog.deletedCount === 1) {
-                        console.log("Successfully deleted 1");
-                    } else {
-                        console.log("Shi, probably failed lmfao");
-                    }
-                    // console.log("hello");
+                    // deleteOne method tests [Deprecated]
+                    // if (deleteLog.deletedCount === 1) {console.log("Successfully deleted 1");} else {console.log("Shi, probably failed lmfao");}
                 }
+                interaction.reply(`${amount} logs have been deleted from the database.`)
             }
         }
     }
