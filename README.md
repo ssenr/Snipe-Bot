@@ -1,5 +1,4 @@
-![Tux, the Linux mascot](/assets/images/logo edit.png)
-
+![Tux, the Linux mascot](/assets/images/logoedit.png)
 
 # Snipe-Bot
 A simple bot to snipe deleted messages.
