@@ -1,4 +1,4 @@
-![Tux, the Linux mascot](/assets/images/logo.png)
+![Tux, the Linux mascot](/assets/images/logo edit.png)
 
 
 # Snipe-Bot
