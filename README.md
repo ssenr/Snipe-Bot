@@ -1,11 +1,8 @@
+![Tux, the Linux mascot](/assets/images/tux.png)
+
+
 # Snipe-Bot
-A simple bot to snipe deleted messages
-
-## Purpose
-To catch people lacking in discord
-
-## Features
-Retrieve's a recently deleted message
+A simple bot to snipe deleted messages.
 
 ## Dependencies
 -Discord.js
