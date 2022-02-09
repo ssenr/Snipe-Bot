@@ -3,7 +3,7 @@
     <a href="https://github.com/Soucouyant/Snipe-Bot"><img src="https://github.com/Soucouyant/Snipe-Bot/blob/master/assets/images/logoedit.png" width="546" alt="snipe-bot" /
   </p>
   <p>
-    <a href="https://github.com/Soucouyant/Snipe-Bot/releases/tag/v2.0.3"><img src="https://img.shields.io/github/v/tag/Soucouyant/Snipe-Bot?color=critical" alt="Latest Release" /></a>
+    <a href="https://github.com/Soucouyant/Snipe-Bot/releases/tag/v2.1.0"><img src="https://img.shields.io/github/v/tag/Soucouyant/Snipe-Bot?color=critical" alt="Latest Release" /></a>
     <a href="https://github.com/Soucouyant/Snipe-Bot/commit/8d933b3c1d707cd02907aa287a1b2af2b46cbfbb"><img src="https://img.shields.io/github/last-commit/Soucouyant/Snipe-Bot" alt="Latest Commit Date" /></a>
     <a href="https://github.com/Soucouyant/Snipe-Bot/commits/master"><img src="https://img.shields.io/github/commit-activity/m/Soucouyant/Snipe-Bot?color=blue" alt="Number of Commits this month" /></a>
   </p>
