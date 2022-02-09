@@ -9,12 +9,16 @@
   </p>
 </div>
 
-# Snipe-Bot
-A simple bot to snipe deleted messages.
+## About
 
-## Dependencies
--Discord.js
--Mongoose
+The snipe bot is a simple discord bot that retrieves deleted messages using:
+- [Node.js](https://nodejs.org) module which easily interacts with the [Discord API](https://discord.com/developers/docs/intro)
+- [Discord.JS](https://discord.js.org/#/) library which provides easy to use JS methods and functions to make coding the bot a lot easier and smoother.
+- [MongoDB](https://www.mongodb.com/) and [MongooseJS](https://mongoosejs.com/) which provide a AWS database and easy to use object modelling to interact with the database.
+
+## Installing Dependencies
+**Node.js 16.9.0 or newer is required.**
+    
 
 ## Code Explanation
 https://docs.google.com/document/d/1i5gMkZXHbUhkEc2OmUa38NbIFNFD0Xo-2eRV4x8AGD4/edit?usp=sharing
