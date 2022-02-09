@@ -1,4 +1,3 @@
-![Tux, the Linux mascot](/assets/images/logoedit.png)
 <div align="center">
   <br />
   <p>
