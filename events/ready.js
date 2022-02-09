@@ -7,9 +7,7 @@ const {
     pruneID,
     snipeID,
     publicRole,
-    debugNotAllowedRole,
-    debugAllowedRole,
-    debugGuildId
+    guildId
 } = require('../config.json')
 
 module.exports = {
@@ -57,21 +55,11 @@ module.exports = {
                     {
                         id: publicRole,
                         type: 'ROLE',
-                        permission: false,
-                    },
-                    {
-                        id: debugNotAllowedRole,
-                        type: 'ROLE',
-                        permission: false,
-                    },
-                    {
-                        id: debugAllowedRole,
-                        type: 'ROLE',
                         permission: true,
                     }
                 ],
             },
         ];
-        await client.guilds.cache.get(debugGuildId)?.commands.permissions.set({ fullPermissions });
+        await client.guilds.cache.get(guildId)?.commands.permissions.set({ fullPermissions });
     },
 };
