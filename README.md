@@ -3,10 +3,9 @@
     <a href="https://github.com/Soucouyant/Snipe-Bot"><img src="https://github.com/Soucouyant/Snipe-Bot/blob/master/assets/images/logoedit.png" width="546" alt="snipe-bot" /
   </p>
   <p>
-    <a href="https://discord.gg/djs"><img src="https://img.shields.io/discord/222078108977594368?color=5865F2&logo=discord&logoColor=white" alt="Discord server" /></a>
-    <a href="https://www.npmjs.com/package/discord.js"><img src="https://img.shields.io/npm/v/discord.js.svg?maxAge=3600" alt="npm version" /></a>
-    <a href="https://www.npmjs.com/package/discord.js"><img src="https://img.shields.io/npm/dt/discord.js.svg?maxAge=3600" alt="npm downloads" /></a>
-    <a href="https://github.com/discordjs/discord.js/actions"><img src="https://github.com/discordjs/discord.js/actions/workflows/test.yml/badge.svg" alt="Tests status" /></a>
+    <a href="https://github.com/Soucouyant/Snipe-Bot/releases/tag/v2.0.2-alpha"><img src="https://img.shields.io/github/v/tag/Soucouyant/Snipe-Bot?color=critical" alt="Latest Release" /></a>
+    <a href="https://github.com/Soucouyant/Snipe-Bot/commit/8d933b3c1d707cd02907aa287a1b2af2b46cbfbb"><img src="https://img.shields.io/github/last-commit/Soucouyant/Snipe-Bot" alt="Latest Commit Date" /></a>
+    <a href="https://github.com/Soucouyant/Snipe-Bot/commits/master"><img src="https://img.shields.io/github/commit-activity/m/Soucouyant/Snipe-Bot?color=blue" alt="Number of Commits this month" /></a>
   </p>
 </div>
 
