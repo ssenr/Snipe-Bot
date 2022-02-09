@@ -8,9 +8,13 @@ module.exports = {
         .setName('snipe')
         .setDescription('Snipes a recently deleted message!'),
     async execute(interaction) {
+
         // console.log(interaction.commandId) // [Interaction commandId]
+
+        // Return the latest deleted message based on timestamp property
         const results = await delSchema.find({}).sort({createdTimestamp: -1}).limit(1)
 
+        // If Object 0 in results array is NOT undefined, then run the code
         if (typeof results[0] !== 'undefined') {
             // Important Vars
             const memberId = results[0].authorId;
@@ -30,6 +34,8 @@ module.exports = {
                 avatarUrl = guildMember.displayAvatarURL({dynamic: true});
             }
             await avatarUrlFind();
+
+            // Creating Embed
             const nessEmbed = new MessageEmbed()
                 .setAuthor({
                     name: results[0].author,
