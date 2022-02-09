@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const { connectionString } = require('../config.json');
-const { Client, Collection, Intents } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES,] });
+
 const {
     logClearID,
     numOfLogsID,
@@ -10,7 +9,6 @@ const {
     publicRole,
     debugNotAllowedRole,
     debugAllowedRole,
-    guildId,
     debugGuildId
 } = require('../config.json')
 
@@ -55,28 +53,24 @@ module.exports = {
             },
             {
                 id: snipeID,
-                permissions: [{
-                    id: publicRole,
-                    type: 'ROLE',
-                    permission: false,
-                }],
+                permissions: [
+                    {
+                        id: publicRole,
+                        type: 'ROLE',
+                        permission: false,
+                    },
+                    {
+                        id: debugNotAllowedRole,
+                        type: 'ROLE',
+                        permission: false,
+                    },
+                    {
+                        id: debugAllowedRole,
+                        type: 'ROLE',
+                        permission: true,
+                    }
+                ],
             },
-            {
-                id: snipeID,
-                permissions: [{
-                    id: debugAllowedRole,
-                    type: 'ROLE',
-                    permission: true,
-                }],
-            },
-            {
-                id: snipeID,
-                permissions: [{
-                    id: debugNotAllowedRole,
-                    type: 'ROLE',
-                    permission: false,
-                }],
-            }
         ];
         await client.guilds.cache.get(debugGuildId)?.commands.permissions.set({ fullPermissions });
     },
